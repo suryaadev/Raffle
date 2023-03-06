@@ -10,12 +10,13 @@ pragma solidity ^0.8.9;
 import "@chainlink/contracts/src/v0.8/interfaces/VRFCoordinatorV2Interface.sol";
 import "@chainlink/contracts/src/v0.8/VRFConsumerBaseV2.sol";
 import "@chainlink/contracts/src/v0.8/interfaces/AutomationCompatibleInterface.sol";
+import "hardhat/console.sol";
 
 
 error Raffle__NotEnoughETHEntered();
 error Raffle__TransferFailed();
 
-contract Raffle is VRFConsumerBaseV2{
+contract Raffle is VRFConsumerBaseV2, AutomationCompatibleInterface{
 
     // state variables
     uint256 private immutable i_entaranceFee;
@@ -56,8 +57,13 @@ contract Raffle is VRFConsumerBaseV2{
         s_players.push(payable(msg.sender));
         emit RaffleEnter(msg.sender);
 
-    } 
+    }
 
+    /**@dev
+     *  */ 
+    function checkUpKeep(bytes memory) public view override returns(bool upkeepNeeded, bytes memory){
+
+    }
 // req number
 // act on it
 // external consumes less gas 
