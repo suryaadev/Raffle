@@ -19,6 +19,7 @@ contract Raffle is VRFConsumerBaseV2 {
     }
 
     /* state variables */
+    
     // chainlink VRF variables
     VRFCoordinatorV2Interface private immutable i_vrfCoordinator;
     uint64 private immutable i_subscriptionId;
